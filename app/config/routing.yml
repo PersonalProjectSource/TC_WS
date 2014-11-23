@@ -1,0 +1,5 @@
+tc_tennis:
+    resource: "@TCTennisBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

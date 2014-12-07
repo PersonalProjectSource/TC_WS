@@ -1,3 +1,8 @@
+tc_front:
+    resource: "@TCFrontBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 tc_tennis:
     resource: "@TCTennisBundle/Controller/"
     type:     annotation

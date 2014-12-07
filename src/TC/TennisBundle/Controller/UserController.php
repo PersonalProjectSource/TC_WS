@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use TC\TennisBundle\Entity\User;
 use TC\TennisBundle\Form\UserType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * User controller.
@@ -18,16 +19,41 @@ use TC\TennisBundle\Form\UserType;
 class UserController extends Controller
 {
 
-    /**
+   /**
+     * Lists all User entities.
+     * @Route("/user/", name="user ")
+     * @Route("/users/", name="users")
+     * @Route("/users", name="users_s")
+     * @Route("/user", name="user_s")
+     * @Method("POST")
+     */
+    public function indexAction(Request $oRequest)
+    {
+        
+        $aUserFromJson  = json_decode($oRequest->getContent(), true);
+                var_dump($this->getRequest()->request);
+
+        var_dump($aUserFromJson);die;
+        
+        $array = array(
+                   'status' => 201,
+                   'message' => "mess");
+                
+        $response = new Response(json_encode($array), 201);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+    
+   /**
      * Lists all User entities.
      *
-     * @Route("/", name="user")
+     * @Route("/mailer/{iIdUser}", name="mailer")
      * @Method("GET")
-     */
-    public function indexAction()
+     */ 
+    public function mailer($iIdUser)
     {
         $em = $this->getDoctrine()->getManager();
-        
         
         $message = \Swift_Message::newInstance()
         ->setSubject('Hello coucou mail')
@@ -38,14 +64,6 @@ class UserController extends Controller
         $this->get('mailer')->send($message);
 
         die('sent');
-        
-        
-        /*
-        $entities = $em->getRepository('TCTennisBundle:User')->findAll();
-
-        return array(
-            'entities' => $entities,
-        );*/
     }
     /**
      * Creates a new User entity.

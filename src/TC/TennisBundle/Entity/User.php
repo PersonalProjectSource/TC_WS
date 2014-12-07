@@ -20,6 +20,12 @@ class User
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Adresse", inversedBy="user")
+     * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
+     */
+    protected $adresse;
 
     /**
      * @var string

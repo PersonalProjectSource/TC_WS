@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Jugement</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Fairplay</th>
+                <td>{{ entity.fairplay }}</td>
+            </tr>
+            <tr>
+                <th>Technique</th>
+                <td>{{ entity.technique }}</td>
+            </tr>
+            <tr>
+                <th>Ambiance</th>
+                <td>{{ entity.ambiance }}</td>
+            </tr>
+            <tr>
+                <th>General</th>
+                <td>{{ entity.general }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('jugement') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('jugement_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

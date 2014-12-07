@@ -7,74 +7,44 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use TC\TennisBundle\Entity\User;
-use TC\TennisBundle\Form\UserType;
-use Symfony\Component\HttpFoundation\Response;
+use TC\TennisBundle\Entity\Jugement;
+use TC\TennisBundle\Form\JugementType;
 
 /**
- * User controller.
+ * Jugement controller.
  *
- * @Route("/")
+ * @Route("/jugement")
  */
-class UserController extends Controller
+class JugementController extends Controller
 {
 
-   /**
-     * Lists all User entities.
-     * @Route("/user/", name="user ")
-     * @Route("/users/", name="users")
-     * @Route("/users", name="users_s")
-     * @Route("/user", name="user_s")
-     * @Method("POST")
-     */
-    public function indexAction(Request $oRequest)
-    {
-        
-        $aUserFromJson  = json_decode($oRequest->getContent(), true);
-//                var_dump($this->getRequest()->request);
-//
-//        var_dump($aUserFromJson);die;
-//        
-        $array = array(
-                   'status' => 201,
-                   'message' => "mess");
-                
-        $response = new Response(json_encode($array), 201);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
-    
-   /**
-     * Lists all User entities.
+    /**
+     * Lists all Jugement entities.
      *
-     * @Route("/mailer/{iIdUser}", name="mailer")
+     * @Route("/", name="jugement")
      * @Method("GET")
-     */ 
-    public function mailer($iIdUser)
+     * @Template()
+     */
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        
-        $message = \Swift_Message::newInstance()
-        ->setSubject('Hello coucou mail')
-        ->setFrom('toto@toto.com')
-        ->setTo('laurent.brau@gmail.com')
-        ->setBody("coucou toi")
-        ;
-        $this->get('mailer')->send($message);
 
-        die('sent');
+        $entities = $em->getRepository('TCTennisBundle:Jugement')->findAll();
+
+        return array(
+            'entities' => $entities,
+        );
     }
     /**
-     * Creates a new User entity.
+     * Creates a new Jugement entity.
      *
-     * @Route("/", name="user_create")
+     * @Route("/", name="jugement_create")
      * @Method("POST")
-     * @Template("TCTennisBundle:User:new.html.twig")
+     * @Template("TCTennisBundle:Jugement:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new User();
+        $entity = new Jugement();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -83,7 +53,7 @@ class UserController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('jugement_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -93,16 +63,16 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a form to create a User entity.
+     * Creates a form to create a Jugement entity.
      *
-     * @param User $entity The entity
+     * @param Jugement $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(User $entity)
+    private function createCreateForm(Jugement $entity)
     {
-        $form = $this->createForm(new UserType(), $entity, array(
-            'action' => $this->generateUrl('user_create'),
+        $form = $this->createForm(new JugementType(), $entity, array(
+            'action' => $this->generateUrl('jugement_create'),
             'method' => 'POST',
         ));
 
@@ -112,15 +82,15 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a form to create a new User entity.
+     * Displays a form to create a new Jugement entity.
      *
-     * @Route("/new", name="user_new")
+     * @Route("/new", name="jugement_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new User();
+        $entity = new Jugement();
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -130,9 +100,9 @@ class UserController extends Controller
     }
 
     /**
-     * Finds and displays a User entity.
+     * Finds and displays a Jugement entity.
      *
-     * @Route("/{id}", name="user_show")
+     * @Route("/{id}", name="jugement_show")
      * @Method("GET")
      * @Template()
      */
@@ -140,10 +110,10 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('TCTennisBundle:User')->find($id);
+        $entity = $em->getRepository('TCTennisBundle:Jugement')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            throw $this->createNotFoundException('Unable to find Jugement entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -155,9 +125,9 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing User entity.
+     * Displays a form to edit an existing Jugement entity.
      *
-     * @Route("/{id}/edit", name="user_edit")
+     * @Route("/{id}/edit", name="jugement_edit")
      * @Method("GET")
      * @Template()
      */
@@ -165,10 +135,10 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('TCTennisBundle:User')->find($id);
+        $entity = $em->getRepository('TCTennisBundle:Jugement')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            throw $this->createNotFoundException('Unable to find Jugement entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -182,16 +152,16 @@ class UserController extends Controller
     }
 
     /**
-    * Creates a form to edit a User entity.
+    * Creates a form to edit a Jugement entity.
     *
-    * @param User $entity The entity
+    * @param Jugement $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(User $entity)
+    private function createEditForm(Jugement $entity)
     {
-        $form = $this->createForm(new UserType(), $entity, array(
-            'action' => $this->generateUrl('user_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new JugementType(), $entity, array(
+            'action' => $this->generateUrl('jugement_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -200,20 +170,20 @@ class UserController extends Controller
         return $form;
     }
     /**
-     * Edits an existing User entity.
+     * Edits an existing Jugement entity.
      *
-     * @Route("/{id}", name="user_update")
+     * @Route("/{id}", name="jugement_update")
      * @Method("PUT")
-     * @Template("TCTennisBundle:User:edit.html.twig")
+     * @Template("TCTennisBundle:Jugement:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('TCTennisBundle:User')->find($id);
+        $entity = $em->getRepository('TCTennisBundle:Jugement')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            throw $this->createNotFoundException('Unable to find Jugement entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -223,7 +193,7 @@ class UserController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('jugement_edit', array('id' => $id)));
         }
 
         return array(
@@ -233,9 +203,9 @@ class UserController extends Controller
         );
     }
     /**
-     * Deletes a User entity.
+     * Deletes a Jugement entity.
      *
-     * @Route("/{id}", name="user_delete")
+     * @Route("/{id}", name="jugement_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -245,21 +215,21 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('TCTennisBundle:User')->find($id);
+            $entity = $em->getRepository('TCTennisBundle:Jugement')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find User entity.');
+                throw $this->createNotFoundException('Unable to find Jugement entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('user'));
+        return $this->redirect($this->generateUrl('jugement'));
     }
 
     /**
-     * Creates a form to delete a User entity by id.
+     * Creates a form to delete a Jugement entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -268,7 +238,7 @@ class UserController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('jugement_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

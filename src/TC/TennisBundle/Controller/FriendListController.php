@@ -7,74 +7,44 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use TC\TennisBundle\Entity\User;
-use TC\TennisBundle\Form\UserType;
-use Symfony\Component\HttpFoundation\Response;
+use TC\TennisBundle\Entity\FriendList;
+use TC\TennisBundle\Form\FriendListType;
 
 /**
- * User controller.
+ * FriendList controller.
  *
- * @Route("/")
+ * @Route("/friendlist")
  */
-class UserController extends Controller
+class FriendListController extends Controller
 {
 
-   /**
-     * Lists all User entities.
-     * @Route("/user/", name="user ")
-     * @Route("/users/", name="users")
-     * @Route("/users", name="users_s")
-     * @Route("/user", name="user_s")
-     * @Method("POST")
-     */
-    public function indexAction(Request $oRequest)
-    {
-        
-        $aUserFromJson  = json_decode($oRequest->getContent(), true);
-//                var_dump($this->getRequest()->request);
-//
-//        var_dump($aUserFromJson);die;
-//        
-        $array = array(
-                   'status' => 201,
-                   'message' => "mess");
-                
-        $response = new Response(json_encode($array), 201);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
-    
-   /**
-     * Lists all User entities.
+    /**
+     * Lists all FriendList entities.
      *
-     * @Route("/mailer/{iIdUser}", name="mailer")
+     * @Route("/", name="friendlist")
      * @Method("GET")
-     */ 
-    public function mailer($iIdUser)
+     * @Template()
+     */
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        
-        $message = \Swift_Message::newInstance()
-        ->setSubject('Hello coucou mail')
-        ->setFrom('toto@toto.com')
-        ->setTo('laurent.brau@gmail.com')
-        ->setBody("coucou toi")
-        ;
-        $this->get('mailer')->send($message);
 
-        die('sent');
+        $entities = $em->getRepository('TCTennisBundle:FriendList')->findAll();
+
+        return array(
+            'entities' => $entities,
+        );
     }
     /**
-     * Creates a new User entity.
+     * Creates a new FriendList entity.
      *
-     * @Route("/", name="user_create")
+     * @Route("/", name="friendlist_create")
      * @Method("POST")
-     * @Template("TCTennisBundle:User:new.html.twig")
+     * @Template("TCTennisBundle:FriendList:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new User();
+        $entity = new FriendList();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -83,7 +53,7 @@ class UserController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('friendlist_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -93,16 +63,16 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a form to create a User entity.
+     * Creates a form to create a FriendList entity.
      *
-     * @param User $entity The entity
+     * @param FriendList $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(User $entity)
+    private function createCreateForm(FriendList $entity)
     {
-        $form = $this->createForm(new UserType(), $entity, array(
-            'action' => $this->generateUrl('user_create'),
+        $form = $this->createForm(new FriendListType(), $entity, array(
+            'action' => $this->generateUrl('friendlist_create'),
             'method' => 'POST',
         ));
 
@@ -112,15 +82,15 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a form to create a new User entity.
+     * Displays a form to create a new FriendList entity.
      *
-     * @Route("/new", name="user_new")
+     * @Route("/new", name="friendlist_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new User();
+        $entity = new FriendList();
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -130,9 +100,9 @@ class UserController extends Controller
     }
 
     /**
-     * Finds and displays a User entity.
+     * Finds and displays a FriendList entity.
      *
-     * @Route("/{id}", name="user_show")
+     * @Route("/{id}", name="friendlist_show")
      * @Method("GET")
      * @Template()
      */
@@ -140,10 +110,10 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('TCTennisBundle:User')->find($id);
+        $entity = $em->getRepository('TCTennisBundle:FriendList')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            throw $this->createNotFoundException('Unable to find FriendList entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -155,9 +125,9 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing User entity.
+     * Displays a form to edit an existing FriendList entity.
      *
-     * @Route("/{id}/edit", name="user_edit")
+     * @Route("/{id}/edit", name="friendlist_edit")
      * @Method("GET")
      * @Template()
      */
@@ -165,10 +135,10 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('TCTennisBundle:User')->find($id);
+        $entity = $em->getRepository('TCTennisBundle:FriendList')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            throw $this->createNotFoundException('Unable to find FriendList entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -182,16 +152,16 @@ class UserController extends Controller
     }
 
     /**
-    * Creates a form to edit a User entity.
+    * Creates a form to edit a FriendList entity.
     *
-    * @param User $entity The entity
+    * @param FriendList $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(User $entity)
+    private function createEditForm(FriendList $entity)
     {
-        $form = $this->createForm(new UserType(), $entity, array(
-            'action' => $this->generateUrl('user_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new FriendListType(), $entity, array(
+            'action' => $this->generateUrl('friendlist_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -200,20 +170,20 @@ class UserController extends Controller
         return $form;
     }
     /**
-     * Edits an existing User entity.
+     * Edits an existing FriendList entity.
      *
-     * @Route("/{id}", name="user_update")
+     * @Route("/{id}", name="friendlist_update")
      * @Method("PUT")
-     * @Template("TCTennisBundle:User:edit.html.twig")
+     * @Template("TCTennisBundle:FriendList:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('TCTennisBundle:User')->find($id);
+        $entity = $em->getRepository('TCTennisBundle:FriendList')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            throw $this->createNotFoundException('Unable to find FriendList entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -223,7 +193,7 @@ class UserController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('friendlist_edit', array('id' => $id)));
         }
 
         return array(
@@ -233,9 +203,9 @@ class UserController extends Controller
         );
     }
     /**
-     * Deletes a User entity.
+     * Deletes a FriendList entity.
      *
-     * @Route("/{id}", name="user_delete")
+     * @Route("/{id}", name="friendlist_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -245,21 +215,21 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('TCTennisBundle:User')->find($id);
+            $entity = $em->getRepository('TCTennisBundle:FriendList')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find User entity.');
+                throw $this->createNotFoundException('Unable to find FriendList entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('user'));
+        return $this->redirect($this->generateUrl('friendlist'));
     }
 
     /**
-     * Creates a form to delete a User entity by id.
+     * Creates a form to delete a FriendList entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -268,7 +238,7 @@ class UserController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('friendlist_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

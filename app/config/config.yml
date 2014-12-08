@@ -67,4 +67,4 @@ swiftmailer:
     auth_mode:  login
     host:       smtp.gmail.com
     username:   laurent.brau
-    password:   moietmoi
+    password:   XXXX

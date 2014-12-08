@@ -14,6 +14,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return array('name' => "coucou");
+        return array('name' => "");
     }
 }

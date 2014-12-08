@@ -25,16 +25,16 @@ class UserController extends Controller
      * @Route("/users/", name="users")
      * @Route("/users", name="users_s")
      * @Route("/user", name="user_s")
-     * @Method("POST")
+     * @Method({"POST", "GET"})
      */
     public function indexAction(Request $oRequest)
     {
         
         $aUserFromJson  = json_decode($oRequest->getContent(), true);
-//                var_dump($this->getRequest()->request);
-//
-//        var_dump($aUserFromJson);die;
-//        
+
+        
+        var_dump("userManagerCreated");die;
+        
         $array = array(
                    'status' => 201,
                    'message' => "mess");

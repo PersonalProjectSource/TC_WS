@@ -7,4 +7,8 @@ tc_tennis:
     resource: "@TCTennisBundle/Controller/"
     type:     annotation
     prefix:   /
+    
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    
 

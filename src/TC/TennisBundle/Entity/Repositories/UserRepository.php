@@ -1,6 +1,6 @@
 <?php
 
-namespace TC\TennisBundle\Entity;
+namespace TC\TennisBundle\Entity\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 

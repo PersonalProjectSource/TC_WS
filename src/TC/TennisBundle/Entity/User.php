@@ -2,6 +2,7 @@
 
 namespace TC\TennisBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="TC\TennisBundle\Entity\Repositories\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer
@@ -19,7 +20,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
     
     /**
      * @ORM\OneToMany(targetEntity="Adresse", mappedBy="user")
@@ -71,21 +72,21 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="role", type="string", length=255)
+     * @ORM\Column(name="role", type="string", length=255, nullable=true)
      */
     private $role;
 
@@ -173,6 +174,7 @@ class User
      */
     public function __construct()
     {
+        parent::__construct();
         $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->auteurDefi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->receveurDefi = new \Doctrine\Common\Collections\ArrayCollection();

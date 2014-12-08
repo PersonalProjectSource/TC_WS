@@ -310,11 +310,11 @@ ul.sidebar-menu li a i {
 }
 
 ul.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
-    color: #FF6C60;
+    color: #116d13;
 }
 
 ul.sidebar-menu li a.active i {
-    color: #FF6C60;
+    color: #116d13;
 }
 
 
@@ -367,9 +367,8 @@ a.logo:hover, a.logo:focus {
 }
 
 a.logo span {
-    color: #FF6C60;
+    color: #116d13;
 }
-
 
 /*notification*/
 
@@ -451,7 +450,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 }
 
 .dropdown-menu.extended li p.red {
-    background-color: #ff6c60;
+    background-color: #116d13;
     color: #fff;
 }
 

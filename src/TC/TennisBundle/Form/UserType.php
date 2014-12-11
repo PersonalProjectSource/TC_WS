@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use TC\TennisBundle\Entity\Adresse;
+
 class UserType extends AbstractType
 {
         /**
@@ -18,7 +20,19 @@ class UserType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('role')
-        ;
+                
+            ->add('adresses', 'collection', array(
+                // chaque item du tableau sera un champ « email »
+                'type'   => 'adresse',
+                // ces options sont passées à chaque type « email »
+                'options'=> array(
+                    'required'  => false,
+                    'attr'      => array('class' => 'email-box')
+                )
+            ));
+//            ->add('adresse', 'entity', array(
+//                'class' => 'TCTennisBundle:Adresse',
+//            ))
     }
     
     /**

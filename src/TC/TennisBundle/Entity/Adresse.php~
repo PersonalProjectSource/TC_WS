@@ -217,4 +217,27 @@ class Adresse
     {
         return $this->visible;
     }
+
+    /**
+     * Set user
+     *
+     * @param \TC\TennisBundle\Entity\Adresse $user
+     * @return Adresse
+     */
+    public function setUser(\TC\TennisBundle\Entity\Adresse $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \TC\TennisBundle\Entity\Adresse 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

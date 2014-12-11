@@ -8,13 +8,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use TC\TennisBundle\Entity\User;
+
 use TC\TennisBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * User controller.
  *
- * @Route("/")
+ * @Route("/user")
  */
 class UserController extends Controller
 {

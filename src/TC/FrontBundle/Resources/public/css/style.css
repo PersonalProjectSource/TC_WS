@@ -1327,11 +1327,10 @@ ul.tag li a {
     width: 80px;
 }
 
-
 /*footer*/
 
 .footer {
-    background: #475268;
+    background: #1E6E0F;
     color: #fff;
     padding: 50px 0;
     margin-top: 50px;
@@ -1355,14 +1354,14 @@ ul.tag li a {
 }
 
 .tweet-box {
-    background: #505b71;
+    background: #4B9060;
     padding: 20px 15px;
     border-radius: 5px;
     font-size: 14px;
 }
 
 .tweet-box:before {
-    background-color: #505b71;
+    background-color: #4B9060;
     border-color: #505b71;
     border-image: none;
     border-right: 1px none #505b71;
@@ -1400,7 +1399,7 @@ ul.tag li a {
 
 .social-link-footer li a {
     color: #fff;
-    background:#505b71;
+    background:#4B9060;
     padding: 10px;
     width: 50px;
     height: 50px;
@@ -1415,7 +1414,7 @@ ul.tag li a {
 }
 
 .social-link-footer li a:hover {
-    background: #F77B6F;
+    background: #53B971;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
     -ms-transition: all .3s ease;

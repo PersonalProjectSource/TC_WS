@@ -46,6 +46,15 @@
                     </button>
                     <a class="navbar-brand" href="index.html">Ouya<span>.com</span></a>
                 </div>
+                <div class="form-connect">
+                    <form method="post" action="{{ path('tc_tennis_default_index') }}">
+                        <div class="">
+                            <input type="text" placeholder="login" name="login"/><br>
+                            <input type="password" placeholder="password" name="password"/>
+                            <input class="btn-design" type="submit" name="connect-btn" value="connexion"/>
+                        </div>
+                    </form>
+                </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
                         <li class=""><a href="index.html">Home</a></li>

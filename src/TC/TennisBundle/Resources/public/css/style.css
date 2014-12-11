@@ -168,7 +168,7 @@ a, a:hover, a:focus {
     width: 210px;
     height: 100%;
     position: fixed;
-    background: #2a3542;
+    background: #0A5221;
 }
 
 #sidebar ul li {
@@ -290,7 +290,7 @@ ul.sidebar-menu li a{
 }
 
 ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
-    background: #35404d;
+    background: #0D8533;
     color: #fff;
     display: block;
     border-radius: 4px;
@@ -310,11 +310,11 @@ ul.sidebar-menu li a i {
 }
 
 ul.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
-    color: #116d13;
+    color: #9E0300;
 }
 
 ul.sidebar-menu li a.active i {
-    color: #116d13;
+    color: #9E0300;
 }
 
 

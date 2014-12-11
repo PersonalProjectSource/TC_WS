@@ -30,7 +30,6 @@ class AdresseController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('TCTennisBundle:Adresse')->findAll();
-
         return array(
             'entities' => $entities,
         );

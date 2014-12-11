@@ -1,10 +1,10 @@
 {% extends 'TCTennisBundle:Layout:admin_layout.html.twig' %}
 
 
-{#{% block body -%}
-    <h1>Adresse list</h1>
-
-    <table class="records_list">
+{% block body %}
+    {{ parent() }}
+    <section id="container">
+            <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
@@ -42,12 +42,14 @@
         </tbody>
     </table>
 
-        <ul>
+    <ul>
         <li>
             <a href="{{ path('adresse_new') }}">
                 Create a new entry
             </a>
         </li>
     </ul>
+
+    </section>
+
     {% endblock %}
-#}

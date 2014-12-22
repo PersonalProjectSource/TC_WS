@@ -60,6 +60,11 @@ class User extends BaseUser
      */
     protected $statistique;
     
+    /**
+     * @ORM\OneToMany(targetEntity="NewsStream", mappedBy="user")
+     */
+    protected $newsStreams;
+    
    /**
      * @ORM\OneToOne(targetEntity="FriendList")
      */

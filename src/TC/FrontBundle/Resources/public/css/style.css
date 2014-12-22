@@ -17,6 +17,21 @@ body {
     font-size:13px;
 }
 
+.form-connect {
+    float:right;
+}
+
+.form-connect input {
+    border: 1px solid #FFF;
+}
+
+.form-connect form {
+    margin-top: 20px;
+}
+
+.btn-design {
+    border-radius: 10px;
+}
 
 a, a:hover, a:focus {
     text-decoration: none;

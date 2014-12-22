@@ -22,6 +22,8 @@ class User extends BaseUser
      */
     protected $id;
     
+   
+    
     /**
      * @ORM\OneToMany(targetEntity="Adresse", mappedBy="user")
      * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
@@ -89,8 +91,15 @@ class User extends BaseUser
      * @ORM\Column(name="role", type="string", length=255, nullable=true)
      */
     private $role;
-
-
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isAdherent", type="boolean", length=255, nullable=true)
+     */
+    private $isAdherent;
+    
+    
     /**
      * Get id
      *
@@ -110,7 +119,7 @@ class User extends BaseUser
     public function setNom($nom)
     {
         $this->nom = $nom;
-
+        $this->username = $nom;
         return $this;
     }
 
@@ -448,5 +457,28 @@ class User extends BaseUser
     public function getDefi()
     {
         return $this->defi;
+    }
+
+    /**
+     * Set isAdherent
+     *
+     * @param boolean $isAdherent
+     * @return User
+     */
+    public function setIsAdherent($isAdherent)
+    {
+        $this->isAdherent = $isAdherent;
+
+        return $this;
+    }
+
+    /**
+     * Get isAdherent
+     *
+     * @return boolean 
+     */
+    public function getIsAdherent()
+    {
+        return $this->isAdherent;
     }
 }

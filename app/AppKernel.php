@@ -20,6 +20,10 @@ class AppKernel extends Kernel
             new TC\FrontBundle\TCFrontBundle(),
             // FOSUserBundle
             new FOS\UserBundle\FOSUserBundle(),
+            
+            // Bundle pour le rest
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\RestBundle\FOSRestBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

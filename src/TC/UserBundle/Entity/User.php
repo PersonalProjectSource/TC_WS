@@ -151,4 +151,12 @@ class User
     {
         return $this->actif;
     }
+    
+    /**
+     * Set emailCanonical
+     */
+    public function setEmailCanonical()
+    {
+        $this->emailCanonical = $this->email;
+    }
 }

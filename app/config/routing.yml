@@ -1,6 +1,7 @@
 tc_front:
     resource: "@TCFrontBundle/Controller/"
     type:     annotation
+    host:     "http://tc.dev.distant/RestSymf/web/app_dev.php/"
     prefix:   /
 
 tc_tennis:

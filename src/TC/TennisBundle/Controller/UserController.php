@@ -10,11 +10,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use TC\TennisBundle\Entity\User;
 use TC\TennisBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * User controller.
  *
  * @Route("/")
+ * @
  */
 class UserController extends Controller
 {
@@ -29,21 +31,33 @@ class UserController extends Controller
      */
     public function indexAction(Request $oRequest)
     {
+        $oEm = $this->getDoctrine()->getManager();
+        $aUsers = $oEm->getRepository("TCTennisBundle:User")
+                    ->findBy(array("isAdherent" => true));
         
-        $aUserFromJson  = json_decode($oRequest->getContent(), true);
+        $aUserJson = array();
+        $this->hydrateJsonUserArray($aUsers, $aUserJson);
+       
+        $oResponse = new JsonResponse();
+        $oResponse->setStatusCode(401);
+        $oResponse->setData(array(
+            'data' => $aUserJson,
+            'status' => $oResponse->getStatusCode()
+        ));
+        
+        return $oResponse;
 
+        }
         
-        var_dump("userManagerCreated");die;
-        
-        $array = array(
-                   'status' => 201,
-                   'message' => "mess");
-                
-        $response = new Response(json_encode($array), 201);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
+        private function hydrateJsonUserArray(&$aUserFromBase, &$aUserJson) {
+            
+           
+            foreach ($aUserFromBase as $oUser) {
+                $aUserJson['nom'] = $oUser->getNom();
+                $aUserJson['prenom'] = $oUser->getPrenom();
+                $aUserJson['role'] = $oUser->getRole();
+            }
+        }
     
    /**
      * Lists all User entities.
@@ -114,7 +128,7 @@ class UserController extends Controller
     /**
      * Displays a form to create a new User entity.
      *
-     * @Route("/new", name="user_new")
+     * @Route("/user/new", name="user_new")
      * @Method("GET")
      * @Template()
      */

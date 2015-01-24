@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="TC\TennisBundle\Entity\Repositories\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer
@@ -78,7 +78,13 @@ class User
      * @ORM\Column(name="role", type="string", length=255, nullable=true)
      */
     private $role;
-
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isAdherent", type="boolean", length=255, nullable=true)
+     */
+    private $isAdherent;
 
     /**
      * Get id
@@ -438,6 +444,7 @@ class User
     {
         return $this->defi;
     }
+<<<<<<< HEAD
 
     /**
      * Add classement
@@ -542,4 +549,6 @@ class User
     }
     
     
+=======
+>>>>>>> bd2a7cc2479cdf9c7002f073226730a5c6876c90
 }

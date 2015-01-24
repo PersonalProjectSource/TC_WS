@@ -1,24 +1,18 @@
 {% extends 'TCTennisBundle:Layout:admin_layout.html.twig' %}
-
 {% block body -%}
     {{ include('TCTennisBundle:Header:main_header.html.twig') }}
     {{ parent() }}
-    
     <section id="container" >
-      <!--sidebar end-->
-      <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
               <div class="row">
                   <div class="col-lg-8">
-                      <!--timeline start-->
                       <section class="panel">
                           <div class="panel-body">
                                   <div class="text-center mbot30">
                                       <h3 class="timeline-title">Évènements récents</h3>
                                       <p class="t-info text-muted">derniere mise a jour <span class="date-ajax-content"></span></p>
                                   </div>
-
                                   <div class="timeline">
                                       <article class="timeline-item">
                                           <div class="timeline-desk">
@@ -109,10 +103,7 @@
 
                                   <div class="clearfix">&nbsp;</div>
                               </div>
-                      </section>
-                      <!--timeline end-->
-                  </div>
-                  
+                                  </div>
                   <div class="col-lg-4">
                       <!--features carousel start-->
                       <section class="panel">
@@ -200,6 +191,8 @@
                           </div>
                       </section>
                   </div>
+              </div>
+            </section>
           </section>
       </section>
 
@@ -231,3 +224,4 @@
             }, 5000);
     </script>
 {% endblock javascript %}
+

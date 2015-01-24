@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Controller/DefaultController.php</file>
             <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Resources/views/Header/main_header.html.twig</file>
             <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Controller/UserController.php</file>
@@ -11,6 +12,16 @@
             <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Resources/views/User/index.html.twig</file>
             <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Resources/views/Layout/admin_layout.html.twig</file>
             <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Resources/views/Default/index.html.twig</file>
+=======
+            <file>file:/var/www/TC/TC_WS/src/TC/TennisBundle/Resources/views/Layout/admin_layout.html.twig</file>
+            <file>file:/var/www/TC/TC_WS/src/TC/TennisBundle/Resources/views/Adresse/index.html.twig</file>
+            <file>file:/var/www/TC/TC_WS/src/TC/TennisBundle/Resources/views/Menu/vertical_menu.html.twig</file>
+            <file>file:/var/www/TC/TC_WS/src/TC/TennisBundle/Resources/public/css/style.css</file>
+            <file>file:/var/www/TC/TC_WS/src/TC/TennisBundle/Controller/DefaultController.php</file>
+            <file>file:/var/www/TC/TC_WS/src/TC/TennisBundle/Controller/DefiController.php</file>
+            <file>file:/var/www/TC/TC_WS/src/TC/FrontBundle/Resources/public/css/style.css</file>
+            <file>file:/var/www/TC/TC_WS/src/TC/TennisBundle/Resources/views/Default/index.html.twig</file>
+>>>>>>> bd2a7cc2479cdf9c7002f073226730a5c6876c90
         </group>
     </open-files>
 </project-private>

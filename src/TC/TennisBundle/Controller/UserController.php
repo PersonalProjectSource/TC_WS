@@ -32,9 +32,6 @@ class UserController extends Controller
     {
         
         $aUserFromJson  = json_decode($oRequest->getContent(), true);
-
-        
-        var_dump("userManagerCreated");die;
         
         $array = array(
                    'status' => 201,
@@ -66,7 +63,8 @@ class UserController extends Controller
 
         die('sent');
     }
-    /**
+    
+   /**
      * Creates a new User entity.
      *
      * @Route("/", name="user_create")
@@ -93,7 +91,7 @@ class UserController extends Controller
         );
     }
 
-    /**
+   /**
      * Creates a form to create a User entity.
      *
      * @param User $entity The entity
@@ -164,9 +162,8 @@ class UserController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('TCTennisBundle:User')->find($id);
+      $em = $this->getDoctrine()->getManager();
+      $entity = $em->getRepository('TCTennisBundle:User')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -233,7 +230,8 @@ class UserController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
-    /**
+    
+   /**
      * Deletes a User entity.
      *
      * @Route("/{id}", name="user_delete")

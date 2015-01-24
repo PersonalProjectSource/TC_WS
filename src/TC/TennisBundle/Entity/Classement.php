@@ -22,7 +22,7 @@ class Classement
     private $id;
     
    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="Classement")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="classement")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $users;

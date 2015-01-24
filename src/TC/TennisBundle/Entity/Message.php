@@ -1,0 +1,182 @@
+<?php
+
+namespace TC\TennisBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Message
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="TC\TennisBundle\Entity\Repositories\MessageRepository")
+ */
+class Message
+{
+   /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+   /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="messages")
+     */
+    protected $user;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="object", type="string", length=150)
+     */
+    private $object;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="string", length=255)
+     */
+    private $content;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="detail", type="text")
+     */
+    private $detail;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="visible", type="boolean")
+     */
+    private $visible;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set object
+     *
+     * @param string $object
+     * @return Message
+     */
+    public function setObject($object)
+    {
+        $this->object = $object;
+
+        return $this;
+    }
+
+    /**
+     * Get object
+     *
+     * @return string 
+     */
+    public function getObject()
+    {
+        return $this->object;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return Message
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string 
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set detail
+     *
+     * @param string $detail
+     * @return Message
+     */
+    public function setDetail($detail)
+    {
+        $this->detail = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Get detail
+     *
+     * @return string 
+     */
+    public function getDetail()
+    {
+        return $this->detail;
+    }
+
+    /**
+     * Set visible
+     *
+     * @param boolean $visible
+     * @return Message
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean 
+     */
+    public function getVisible()
+    {
+        return $this->visible;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \TC\TennisBundle\Entity\User $user
+     * @return Message
+     */
+    public function setUser(\TC\TennisBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \TC\TennisBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}

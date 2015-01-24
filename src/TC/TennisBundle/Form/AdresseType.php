@@ -20,8 +20,6 @@ class AdresseType extends AbstractType
             ->add('codePostal')
             ->add('ville')
             ->add('pays')
-            ->add('visible')
-            ->add('user')
         ;
     }
     
@@ -41,5 +39,10 @@ class AdresseType extends AbstractType
     public function getName()
     {
         return 'tc_tennisbundle_adresse';
+    }
+    
+    public function __toString()
+    {
+        return "toto";
     }
 }

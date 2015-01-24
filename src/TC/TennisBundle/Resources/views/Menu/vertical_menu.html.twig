@@ -3,14 +3,14 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
                   <li>
-                      <a class="" href="index.html">
+                      <a class="" href="{{ path ('default', { 'iId': entity.id }) }}">
                           <i class="fa fa-dashboard"></i>
                           <span>Accueil</span>
                       </a>
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href="{{ path('user_edit', {'id': 1}) }}" >
                           <i class="fa fa-laptop"></i>
                           <span>Mon profil</span>
                       </a>

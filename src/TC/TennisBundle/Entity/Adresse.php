@@ -21,12 +21,6 @@ class Adresse
      */
     private $id;
     
-   /**
-     * @ORM\ManyToOne(targetEntity="Adresse", inversedBy="adresses")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
-    protected $user;
-
     /**
      * @var integer
      *

@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="TC\TennisBundle\Entity\Repositories\UserRepository")
  */
-class User extends BaseUser
+class User
 {
     /**
      * @var integer
@@ -23,40 +23,35 @@ class User extends BaseUser
     protected $id;
     
     /**
-     * @ORM\OneToMany(targetEntity="Adresse", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="Adresse", mappedBy="user")
      * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
      */
     protected $adresses;
     
    /**
-     * @ORM\ManyToOne(targetEntity="Classement", inversedBy="classement")
+     * @ORM\OneToMany(targetEntity="Classement", mappedBy="users")
      */
     protected $classement;
     
-   /**
-     * @ORM\OneToMany(targetEntity="Defi", mappedBy="auteur")
-     */
-    protected $auteurDefi;
-    
-   /**
-     * @ORM\OneToMany(targetEntity="Defi", mappedBy="receveur")
-     */
-    protected $receveurDefi;
-    
-   /**
-     * @ORM\OneToMany(targetEntity="Jugement", mappedBy="auteur")
-     */
-    protected $auteurJugement;
-    
     /**
-     * @ORM\OneToMany(targetEntity="Jugement", mappedBy="receveur")
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="user")
      */
-    protected $receveurJugement;
+    protected $messages;
     
    /**
      * @ORM\OneToOne(targetEntity="Statistique")
      */
     protected $statistique;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Jugement", mappedBy="user")
+     */
+    protected $jugement;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="NewsStream", mappedBy="user")
+     */
+    protected $newsStreams;
     
    /**
      * @ORM\OneToOne(targetEntity="FriendList")
@@ -64,12 +59,6 @@ class User extends BaseUser
     protected $FriendList;
     
    /**
-     * @ORM\OneToMany(targetEntity="Defi", mappedBy="auteurdefi")
-     * @ORM\JoinColumn(name="defi_id", referencedColumnName="id")
-     */
-    protected $defi;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255, nullable=true)
@@ -449,4 +438,108 @@ class User extends BaseUser
     {
         return $this->defi;
     }
+
+    /**
+     * Add classement
+     *
+     * @param \TC\TennisBundle\Entity\Classement $classement
+     * @return User
+     */
+    public function addClassement(\TC\TennisBundle\Entity\Classement $classement)
+    {
+        $this->classement[] = $classement;
+
+        return $this;
+    }
+
+    /**
+     * Remove classement
+     *
+     * @param \TC\TennisBundle\Entity\Classement $classement
+     */
+    public function removeClassement(\TC\TennisBundle\Entity\Classement $classement)
+    {
+        $this->classement->removeElement($classement);
+    }
+
+    /**
+     * Add jugement
+     *
+     * @param \TC\TennisBundle\Entity\Jugement $jugement
+     * @return User
+     */
+    public function addJugement(\TC\TennisBundle\Entity\Jugement $jugement)
+    {
+        $this->jugement[] = $jugement;
+
+        return $this;
+    }
+
+    /**
+     * Remove jugement
+     *
+     * @param \TC\TennisBundle\Entity\Jugement $jugement
+     */
+    public function removeJugement(\TC\TennisBundle\Entity\Jugement $jugement)
+    {
+        $this->jugement->removeElement($jugement);
+    }
+
+    /**
+     * Get jugement
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getJugement()
+    {
+        return $this->jugement;
+    }
+
+    /**
+     * Add newsStreams
+     *
+     * @param \TC\TennisBundle\Entity\NewsStream $newsStreams
+     * @return User
+     */
+    public function addNewsStream(\TC\TennisBundle\Entity\NewsStream $newsStreams)
+    {
+        $this->newsStreams[] = $newsStreams;
+
+        return $this;
+    }
+
+    /**
+     * Remove newsStreams
+     *
+     * @param \TC\TennisBundle\Entity\NewsStream $newsStreams
+     */
+    public function removeNewsStream(\TC\TennisBundle\Entity\NewsStream $newsStreams)
+    {
+        $this->newsStreams->removeElement($newsStreams);
+    }
+
+    /**
+     * Get newsStreams
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNewsStreams()
+    {
+        return $this->newsStreams;
+    }
+
+    /**
+     * Set jugement
+     *
+     * @param \TC\TennisBundle\Entity\Jugement $jugement
+     * @return User
+     */
+    public function setJugement(\TC\TennisBundle\Entity\Jugement $jugement = null)
+    {
+        $this->jugement = $jugement;
+
+        return $this;
+    }
+    
+    
 }

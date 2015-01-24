@@ -20,19 +20,8 @@ class UserType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('role')
-                
-            ->add('adresses', 'collection', array(
-                // chaque item du tableau sera un champ « email »
-                'type'   => 'adresse',
-                // ces options sont passées à chaque type « email »
-                'options'=> array(
-                    'required'  => false,
-                    'attr'      => array('class' => 'email-box')
-                )
-            ));
-//            ->add('adresse', 'entity', array(
-//                'class' => 'TCTennisBundle:Adresse',
-//            ))
+            ->add('adresses', new AdresseType());
+            
     }
     
     /**

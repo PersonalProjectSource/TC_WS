@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/TC_API_REST/src/TC/FrontBundle/Resources/views/Default/index.html.twig</file>
-            <file>file:/var/www/TC_API_REST/src/TC/FrontBundle/Resources/public/css/style.css</file>
+            <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Controller/DefaultController.php</file>
+            <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Resources/views/Header/main_header.html.twig</file>
+            <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Controller/UserController.php</file>
+            <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Form/AdresseType.php</file>
+            <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Resources/views/User/edit.html.twig</file>
+            <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Resources/views/User/index.html.twig</file>
+            <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Resources/views/Layout/admin_layout.html.twig</file>
+            <file>file:/var/www/tc_ws_version/TC/src/TC/TennisBundle/Resources/views/Default/index.html.twig</file>
         </group>
     </open-files>
 </project-private>

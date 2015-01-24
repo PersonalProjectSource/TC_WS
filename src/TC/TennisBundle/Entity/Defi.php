@@ -22,13 +22,13 @@ class Defi
     private $id;
     
    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="defi")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="auteur_id", referencedColumnName="id")
      */
     protected $auteurDefi;
     
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="defi")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="receveur_id", referencedColumnName="id")
      */
     protected $receveurDefi;

@@ -265,27 +265,4 @@ class Jugement
     {
         return $this->nombreVote;
     }
-
-    /**
-     * Set user
-     *
-     * @param \TC\TennisBundle\Entity\User $user
-     * @return Jugement
-     */
-    public function setUser(\TC\TennisBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \TC\TennisBundle\Entity\User 
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 }

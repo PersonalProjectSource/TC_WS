@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'TCTennisBundle:Layout:admin_layout.html.twig' %}
 
 {% block body -%}
     <h1>User creation</h1>
@@ -12,4 +12,19 @@
         </a>
     </li>
 </ul>
+
+    <script>
+        console.log($('body'));
+        $.getJSON( "ajax/test.json", function( data ) {
+            var items = [];
+            $.each( data, function( key, val ) {
+              items.push( "<li id='" + key + "'>" + val + "</li>" );
+            });
+
+            $( "<ul/>", {
+              "class": "my-new-list",
+              html: items.join( "" )
+            }).appendTo( "body" );
+          });
+    </script>
 {% endblock %}

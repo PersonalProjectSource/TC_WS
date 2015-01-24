@@ -21,6 +21,10 @@ ul li {
     list-style: none;
 }
 
+.right {
+    float: right;
+}
+
 a, a:hover, a:focus {
     text-decoration: none;
     outline: none;

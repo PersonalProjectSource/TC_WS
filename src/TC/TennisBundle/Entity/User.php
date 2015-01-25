@@ -25,7 +25,7 @@ class User
    
     
     /**
-     * @ORM\OneToOne(targetEntity="Adresse", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="Adresse")
      * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
      */
     protected $adresses;
@@ -172,8 +172,8 @@ class User
      */
     public function __construct()
     {
-        parent::__construct();
-        $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
+        //parent::__construct();
+        //$this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->auteurDefi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->receveurDefi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->auteurJugement = new \Doctrine\Common\Collections\ArrayCollection();

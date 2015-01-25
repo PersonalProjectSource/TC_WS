@@ -20,15 +20,7 @@ class UserType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('role')
-<<<<<<< HEAD
             ->add('adresses', new AdresseType());
-            
-=======
-            ->add('email')
-            ->add('isAdherent')
-            ->add('password')
-        ;
->>>>>>> bd2a7cc2479cdf9c7002f073226730a5c6876c90
     }
     
     /**

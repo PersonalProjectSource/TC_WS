@@ -24,10 +24,7 @@ class UserController extends Controller
 
    /**
      * Lists all User entities.
-     * @Route("/user/", name="user ")
-     * @Route("/users/", name="users")
-     * @Route("/users", name="users_s")
-     * @Route("/user", name="user_s")
+     * @Route("/user/", name="user")
      * @Method({"POST", "GET"})
      */
     public function indexAction(Request $oRequest)

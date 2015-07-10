@@ -52,8 +52,7 @@ class UserController extends Controller
     }
         
         private function hydrateJsonUserArray(&$aUserFromBase, &$aUserJson) {
-            
-           
+
             foreach ($aUserFromBase as $oUser) {
                 $aUserJson['nom'] = $oUser->getNom();
                 $aUserJson['prenom'] = $oUser->getPrenom();

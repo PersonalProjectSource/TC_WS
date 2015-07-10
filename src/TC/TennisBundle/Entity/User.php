@@ -4,6 +4,7 @@ namespace TC\TennisBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use TC\TennisBundle\Entity\Statistic;
 
 /**
  * User
@@ -21,11 +22,9 @@ class User
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
-   
-    
+
     /**
-     * @ORM\OneToOne(targetEntity="Adresse", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="Adresse")
      * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
      */
     protected $adresses;
@@ -39,11 +38,11 @@ class User
      * @ORM\OneToMany(targetEntity="Message", mappedBy="user")
      */
     protected $messages;
-    
+
    /**
-     * @ORM\OneToOne(targetEntity="Statistique")
+     * @ORM\OneToMany(targetEntity="Statistic", mappedBy="users")
      */
-    protected $statistique;
+    protected $statLinkU;
     
     /**
      * @ORM\OneToOne(targetEntity="Jugement", mappedBy="user")
@@ -172,8 +171,8 @@ class User
      */
     public function __construct()
     {
-        parent::__construct();
-        $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
+        //parent::__construct();
+        //$this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->auteurDefi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->receveurDefi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->auteurJugement = new \Doctrine\Common\Collections\ArrayCollection();
@@ -472,7 +471,6 @@ class User
     }
 
     /**
-<<<<<<< HEAD
      * Remove classement
      *
      * @param \TC\TennisBundle\Entity\Classement $classement
@@ -617,5 +615,71 @@ class User
     public function getIsAdherent()
     {
         return $this->isAdherent;
+    }
+
+    /**
+     * Add statistique_user
+     *
+     * @param \TC\TennisBundle\Entity\Statistique $statistiqueUser
+     * @return User
+     */
+    public function addStatistiqueUser(\TC\TennisBundle\Entity\Statistique $statistiqueUser)
+    {
+        $this->statistique_user[] = $statistiqueUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove statistique_user
+     *
+     * @param \TC\TennisBundle\Entity\Statistique $statistiqueUser
+     */
+    public function removeStatistiqueUser(\TC\TennisBundle\Entity\Statistique $statistiqueUser)
+    {
+        $this->statistique_user->removeElement($statistiqueUser);
+    }
+
+    /**
+     * Get statistique_user
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStatistiqueUser()
+    {
+        return $this->statistique_user;
+    }
+
+    /**
+     * Add statLinkU
+     *
+     * @param \TC\TennisBundle\Entity\Statistic $statLinkU
+     * @return User
+     */
+    public function addStatLinkU(\TC\TennisBundle\Entity\Statistic $statLinkU)
+    {
+        $this->statLinkU[] = $statLinkU;
+
+        return $this;
+    }
+
+    /**
+     * Remove statLinkU
+     *
+     * @param \TC\TennisBundle\Entity\Statistic $statLinkU
+     */
+    public function removeStatLinkU(\TC\TennisBundle\Entity\Statistic $statLinkU)
+    {
+        $this->statLinkU->removeElement($statLinkU);
+    }
+
+    /**
+     * Get statLinkU
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStatLinkU()
+    {
+        return $this->statLinkU;
     }
 }

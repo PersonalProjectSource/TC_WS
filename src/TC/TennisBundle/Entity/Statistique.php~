@@ -22,6 +22,11 @@ class Statistique
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="Statistique", mappedBy="users")
+     */
+    protected $user_statistic;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255)

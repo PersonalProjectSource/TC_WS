@@ -4,6 +4,7 @@ namespace TC\TennisBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use TC\TennisBundle\Entity\Statistic;
 
 /**
  * User
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="TC\TennisBundle\Entity\Repositories\UserRepository")
  */
-class User extends BaseUser
+class User
 {
     /**
      * @var integer
@@ -21,9 +22,9 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
-     * @ORM\OneToOne(targetEntity="Adresse", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="Adresse")
      * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
      */
     protected $adresses;
@@ -37,11 +38,11 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Message", mappedBy="user")
      */
     protected $messages;
-    
+
    /**
-     * @ORM\OneToOne(targetEntity="Statistique")
+     * @ORM\OneToMany(targetEntity="Statistic", mappedBy="users", cascade="persist")
      */
-    protected $statistique;
+    protected $statLinkU;
     
     /**
      * @ORM\OneToOne(targetEntity="Jugement", mappedBy="user")
@@ -84,8 +85,9 @@ class User extends BaseUser
      *
      * @ORM\Column(name="isAdherent", type="boolean", length=255, nullable=true)
      */
-    private $isAdherent;
-
+    //private $isAdherent;
+    
+    
     /**
      * Get id
      *
@@ -105,7 +107,7 @@ class User extends BaseUser
     public function setNom($nom)
     {
         $this->nom = $nom;
-
+        $this->username = $nom;
         return $this;
     }
 
@@ -169,8 +171,8 @@ class User extends BaseUser
      */
     public function __construct()
     {
-        parent::__construct();
-        $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
+        //parent::__construct();
+        //$this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->auteurDefi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->receveurDefi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->auteurJugement = new \Doctrine\Common\Collections\ArrayCollection();
@@ -444,7 +446,6 @@ class User extends BaseUser
     {
         return $this->defi;
     }
-<<<<<<< HEAD
 
     /**
      * Add classement
@@ -455,11 +456,22 @@ class User extends BaseUser
     public function addClassement(\TC\TennisBundle\Entity\Classement $classement)
     {
         $this->classement[] = $classement;
+    }
+    
+   /** Set isAdherent
+     *
+     * @param boolean $isAdherent
+     * @return User
+     */
+    public function setIsAdherent($isAdherent)
+    {
+        $this->isAdherent = $isAdherent;
 
         return $this;
     }
 
     /**
+<<<<<<< HEAD
      * Remove classement
      *
      * @param \TC\TennisBundle\Entity\Classement $classement
@@ -549,6 +561,93 @@ class User extends BaseUser
     }
     
     
-=======
->>>>>>> bd2a7cc2479cdf9c7002f073226730a5c6876c90
+
+    /**
+     * Set adresses
+     *
+     * @param \TC\TennisBundle\Entity\Adresse $adresses
+     * @return User
+     */
+    public function setAdresses(\TC\TennisBundle\Entity\Adresse $adresses = null)
+    {
+        $this->adresses = $adresses;
+
+        return $this;
+    }
+
+    /**
+     * Add messages
+     *
+     * @param \TC\TennisBundle\Entity\Message $messages
+     * @return User
+     */
+    public function addMessage(\TC\TennisBundle\Entity\Message $messages)
+    {
+        $this->messages[] = $messages;
+
+        return $this;
+    }
+
+    /**
+     * Remove messages
+     *
+     * @param \TC\TennisBundle\Entity\Message $messages
+     */
+    public function removeMessage(\TC\TennisBundle\Entity\Message $messages)
+    {
+        $this->messages->removeElement($messages);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+        
+    }
+    
+   /** Get isAdherent
+     *
+     * @return boolean 
+     */
+    public function getIsAdherent()
+    {
+        return $this->isAdherent;
+    }
+
+    /**
+     * Add statistique_user
+     *
+     * @param \TC\TennisBundle\Entity\Statistique $statistiqueUser
+     * @return User
+     */
+    public function addStatistiqueUser(\TC\TennisBundle\Entity\Statistique $statistiqueUser)
+    {
+        $this->statistique_user[] = $statistiqueUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove statistique_user
+     *
+     * @param \TC\TennisBundle\Entity\Statistique $statistiqueUser
+     */
+    public function removeStatistiqueUser(\TC\TennisBundle\Entity\Statistique $statistiqueUser)
+    {
+        $this->statistique_user->removeElement($statistiqueUser);
+    }
+
+    /**
+     * Get statistique_user
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStatistiqueUser()
+    {
+        return $this->statistique_user;
+    }
 }

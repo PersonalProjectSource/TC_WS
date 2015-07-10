@@ -22,6 +22,11 @@ class Statistique
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="Statistic", mappedBy="stats")
+     */
+    protected $statLinkS;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255)
@@ -120,5 +125,45 @@ class Statistique
     public function getVisible()
     {
         return $this->visible;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user_statistic = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user_statistic
+     *
+     * @param \TC\TennisBundle\Entity\Statistique $userStatistic
+     * @return Statistique
+     */
+    public function addUserStatistic(\TC\TennisBundle\Entity\Statistic $userStatistic)
+    {
+        $this->user_statistic[] = $userStatistic;
+
+        return $this;
+    }
+
+    /**
+     * Remove user_statistic
+     *
+     * @param \TC\TennisBundle\Entity\Statistique $userStatistic
+     */
+    public function removeUserStatistic(\TC\TennisBundle\Entity\Statistique $userStatistic)
+    {
+        $this->user_statistic->removeElement($userStatistic);
+    }
+
+    /**
+     * Get user_statistic
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUserStatistic()
+    {
+        return $this->user_statistic;
     }
 }

@@ -14,12 +14,13 @@ class DefaultController extends Controller
      * @Route("{iId}/member/home", name="default")
      * @Template()
      */
-    public function indexAction($iId)
+    public function indexAction($iId = 4)
     {
+        $iId = 4;
         $oEm = $this->getDoctrine()->getManager();
         $oCurrentUser = $oEm->getRepository("TCTennisBundle:User")->find($iId);
-        $iTotal = $this->computeApreciation($iId);
-
+        //$iTotal = $this->computeApreciation($iId);
+        $iTotal =5;
         return array(
             'entity' => $oCurrentUser,
             'apreciationTotale' => $iTotal);

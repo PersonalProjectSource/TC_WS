@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use TC\TennisBundle\Entity\Adresse;
+use TC\TennisBundle\Entity\Statistic;
+use TC\TennisBundle\Entity\Statistique;
+use TC\TennisBundle\Entity\User;
 use TC\TennisBundle\Form\AdresseType;
 
 /**
@@ -27,6 +30,35 @@ class AdresseController extends Controller
      */
     public function indexAction()
     {
+
+        // TODO test creation d'une liaison many to many avec attributs.
+        // Instanciation et persistance des liaisons.
+        $oEm = $this->getDoctrine()->getManager();
+
+        $user = new User();
+        $stat = new Statistique();
+        $link = new Statistic();
+        $user->setNom("usertestMutli");
+        $user->setIsAdherent(true);
+        $user->setPrenom("prenomCustomLolo");
+        $user->setRole("UnroleCustomLolo");
+
+        $stat->setDate("dateCustomLolo");
+        $stat->setTitre("TitreCustomlolo");
+        $stat->setVisible(true);
+
+        //$user->addStatistiqueUser($stat);
+        $link->setUsers($user);
+        $link->setStats($stat);
+
+        $link->setDate("dataCustom");
+        $oEm->persist($link);
+        $oEm->flush();
+
+        die("coucou");
+
+
+
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('TCTennisBundle:Adresse')->findAll();
@@ -34,6 +66,7 @@ class AdresseController extends Controller
             'entities' => $entities,
         );
     }
+
     /**
      * Creates a new Adresse entity.
      *

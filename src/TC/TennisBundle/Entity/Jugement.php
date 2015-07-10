@@ -22,7 +22,7 @@ class Jugement
     private $id;
 
    /**
-     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="jugement")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
